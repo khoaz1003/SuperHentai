@@ -1,0 +1,441 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>superhentai.xyz</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* CSS CHUNG */
+        body {
+            background-color: black;
+            padding-top: 50px;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+        }
+
+        .logo {
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            width: 200px;
+            height: auto;
+        }
+
+        .qc1 {
+            position: fixed;
+            top: 650px;
+            left: 550px;
+            width: 350px;
+            height: auto;
+            z-index: 999;
+        }
+
+        /* NAVIGATION & USER MENU */
+        .navigation {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .navigation li {
+                margin-left: 20px;
+            }
+
+            .navigation a {
+                color: #ff6a00;
+                text-decoration: none;
+                font-size: 16px;
+                transition: 0.3s;
+                font-weight: bold;
+            }
+
+                .navigation a:hover {
+                    color: #ffcc00;
+                }
+
+        .login-btn-styled {
+            position: relative;
+            background: #000;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 18px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+            .login-btn-styled::before {
+                content: "";
+                position: absolute;
+                top: -2px;
+                bottom: -2px;
+                left: -2px;
+                right: -2px;
+                background: linear-gradient(45deg, #ff8c00, #ff4500, #fbbf24);
+                border-radius: 10px;
+                z-index: -1;
+            }
+
+        /* USER DROPDOWN */
+        .user-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 5px 12px;
+            border-radius: 20px;
+            border: 1px solid #ff6a00;
+            background: #111;
+        }
+
+        .user-avatar {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .user-name {
+            color: #fff;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 45px;
+            background: #1a1a1a;
+            min-width: 160px;
+            border-radius: 8px;
+            border: 1px solid #ff6a00;
+            z-index: 1001;
+        }
+
+            .dropdown-content a {
+                color: white !important;
+                padding: 12px;
+                display: block;
+                text-decoration: none;
+            }
+
+                .dropdown-content a:hover {
+                    background: #ff6a00;
+                    color: #000 !important;
+                }
+
+        .user-dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* THANH TÌM KIẾM */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin: 60px auto 20px;
+            width: 90%;
+            max-width: 500px;
+        }
+
+        .search-form {
+            display: flex;
+            width: 100%;
+            background: #1a1a1a;
+            border-radius: 25px;
+            border: 1px solid #ff6a00;
+            overflow: hidden;
+        }
+
+        .search-input {
+            flex: 1;
+            background: transparent;
+            border: none;
+            padding: 12px 20px;
+            color: white;
+            outline: none;
+        }
+
+        .search-btn {
+            background: linear-gradient(45deg, #ff8c00, #ff4500);
+            border: none;
+            color: white;
+            padding: 0 20px;
+            cursor: pointer;
+        }
+
+        /* VIDEO & POPUP GIỮ NGUYÊN */
+        .welcomehd {
+            text-align: center;
+            color: white;
+            margin-top: 20px;
+        }
+
+        .vid-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        video {
+            width: 70%;
+            max-width: 400px;
+            border: 3px solid #ff6a00;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+
+        .navigation {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+            .navigation li {
+                margin-left: 20px;
+            }
+
+            .navigation a {
+                color: #ff6a00;
+                text-decoration: none;
+                font-size: 16px;
+                padding: 5px 10px;
+                transition: 0.3s;
+            }
+
+                .navigation a:hover {
+                    color: #ffcc00;
+                    border-bottom: 1px solid #ffcc00;
+                }
+
+        /* NÚT ĐĂNG NHẬP GRADIENT */
+        .login {
+            position: relative;
+            background: #000;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 18px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            z-index: 1;
+            display: inline-block;
+        }
+
+            .login::before {
+                content: "";
+                position: absolute;
+                top: -2px;
+                bottom: -2px;
+                left: -2px;
+                right: -2px;
+                background: linear-gradient(45deg, #ff8c00, #ff4500, #fbbf24);
+                border-radius: 10px;
+                z-index: -1;
+            }
+
+        /* STYLE CHO USER MENU (KHI ĐÃ ĐĂNG NHẬP) */
+        .user-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 5px 12px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid #ff6a00;
+        }
+
+        .user-avatar {
+            width: 25px; /* Kích thước nhỏ xinh bên cạnh tên */
+            height: 25px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .user-name {
+            color: #fff;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 40px;
+            background-color: #1a1a1a;
+            min-width: 150px;
+            border-radius: 8px;
+            border: 1px solid #ff6a00;
+            z-index: 1001;
+            overflow: hidden;
+        }
+
+            .dropdown-content a {
+                color: white !important;
+                padding: 12px;
+                display: block;
+                font-size: 14px;
+                border: none !important;
+            }
+
+                .dropdown-content a:hover {
+                    background-color: #ff6a00;
+                    color: #000 !important;
+                }
+
+        .user-dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <img src="src/logo.jpg" alt="logo" class="logo">
+    <img src="src/qc1.jpg" alt="qc1" class="qc1">
+
+
+
+
+    <ul class="navigation">
+        <li><a href="index.html">Trang Chủ</a></li>
+        <li><a href="tl.html">Thể Loại</a></li>
+        <li><a href="hot.html">Hot</a></li>
+        <li><a href="tk.html">Tìm Kiếm</a></li>
+
+        <li id="authSection">
+            <button id="loginBtn" class="login" onclick="window.location.href='login.html'">Đăng nhập</button>
+
+            <div id="userMenu" class="user-dropdown" style="display: none;">
+                <div class="user-info">
+                    <img src="src/user.png" alt="avatar" class="user-avatar">
+                    <span id="displayUserName" class="user-name">ĐỘ MIXI</span>
+                    <i class="fa-solid fa-caret-down" style="color:#ff6a00; font-size:10px;"></i>
+                </div>
+                <div class="dropdown-content">
+                    <a href="#"><i class="fa-solid fa-user-gear"></i> Hồ sơ</a>
+                    <a href="#" id="logoutBtn"><i class="fa-solid fa-power-off"></i> Đăng xuất</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+
+
+
+    <div class="search-container">
+        <form class="search-form">
+            <input type="text" placeholder="Tìm kiếm nội dung..." class="search-input">
+            <button type="button" class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    </div>
+
+    <div class="welcomehd">
+        <h3>Chào mừng đến với SuperHentai! Lên đỉnh cùng anh Độ ii</h3>
+    </div>
+
+    <div class="vid-container">
+        <video controls><source src="src/vid1.mp4" type="video/mp4"></video>
+    </div>
+
+    <div id="welcomePopup" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" id="closePopup">&times;</span>
+            <img src="src/popup.jpg" alt="popup" style="width:100%">
+        </div>
+    </div>
+
+    <script>
+        // XỬ LÝ ĐĂNG NHẬP/ĐĂNG XUẤT
+        const loginBtn = document.getElementById('loginBtn');
+        const userMenu = document.getElementById('userMenu');
+        const displayUserName = document.getElementById('displayUserName');
+
+        function checkAuth() {
+            const email = localStorage.getItem('userEmail');
+            if (localStorage.getItem('isLoggedIn') === 'true' && email) {
+                loginBtn.style.display = 'none';
+                userMenu.style.display = 'inline-block';
+                displayUserName.innerText = email.split('@')[0];
+            }
+        }
+
+        document.getElementById('logoutBtn').onclick = function () {
+            if (confirm("Bạn có chắc chắn muốn đăng xuất không?")) {
+                localStorage.removeItem('isLoggedIn');
+                localStorage.removeItem('userEmail');
+                location.reload();
+            }
+        };
+
+        // POPUP QUẢNG CÁO
+        const modal = document.getElementById("welcomePopup");
+        window.onload = function () {
+            checkAuth();
+            if (!localStorage.getItem("popupShown")) {
+                setTimeout(() => { modal.style.display = "block"; }, 1500);
+            }
+        };
+        document.getElementById("closePopup").onclick = function () {
+            modal.style.display = "none";
+            localStorage.setItem("popupShown", "true");
+        };
+    </script>
+</body>
+</html>

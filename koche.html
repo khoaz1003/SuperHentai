@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>superhentai.xyz</title>
+    <style>
+        /* CSS CHUNG */
+        body {
+            background-image: url('src/background.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-color: #000000;
+            min-height: 100vh;
+            margin: 0;
+            position: relative;
+            font-family: Arial, sans-serif;
+            color: white;
+            padding-top: 50px;
+        }
+
+            /* LỚP PHỦ BLUR */
+            body::before {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-image: inherit;
+                background-size: inherit;
+                background-repeat: inherit;
+                background-attachment: inherit;
+                filter: blur(5px);
+                z-index: -1;
+            }
+
+        /* LOGO */
+        .logo {
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            width: 200px;
+            height: auto;
+            z-index: 10;
+        }
+        .t1 {
+            position: center;
+            top: 500px;
+            left: 100px;
+            width: 500px;
+            height: auto;
+        }
+
+        .t2 {
+            position: center;
+            top: 500px;
+            left: 100px;
+            width: 500px;
+            height: auto;
+        }
+
+        /* THANH ĐIỀU HƯỚNG CHÍNH (NAVIGATION) */
+        .navigation {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            z-index: 10;
+        }
+
+            .navigation li {
+                margin-left: 20px;
+            }
+
+            .navigation a {
+                color: #ffffff;
+                text-decoration: none;
+                font-size: 16px;
+                padding: 5px 10px;
+                border: 1px solid transparent;
+                transition: all 0.3s ease;
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+
+                .navigation a:hover {
+                    color: #ffcc00;
+                    border-bottom: 1px solid #ffcc00;
+                }
+
+        /* Đánh dấu tab hiện tại */
+        .current-page {
+            color: #ffcc00 !important;
+            border-bottom: 1px solid #ffcc00;
+        }
+
+        /* KHỐI NỘI DUNG CHÍNH TRANG THỂ LOẠI */
+        .category-content {
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 50px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            border-radius: 10px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
+</head>
+<body>
+    <img src="src/logo.jpg" alt="logo" class="logo">
+
+    <ul class="navigation">
+        <li><a href="index.html">Trang Chủ</a></li>
+        <li><a href="tl.html">Thể Loại</a></li>
+        <li><a href="#">Hot</a></li>
+        <li><a href="#">Tìm Kiếm</a></li>
+    </ul>
+    <img src="src/tok1.jpg" alt="t1" class="t1">
+    <img src="src/tok2.jpg" alt="t2" class="t2">
+    </div>
+
+</body>
+</html>
