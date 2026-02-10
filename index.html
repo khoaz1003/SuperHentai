@@ -28,6 +28,40 @@
             height: auto;
             z-index: 999;
         }
+        .qc1-content {
+            position: relative; /* Quan trọng để nút đóng bám vào đây */
+            width: 100%;
+        }
+
+            .qc1-content img {
+                width: 100%;
+                border-radius: 8px;
+                display: block;
+            }
+
+        /* Sửa lỗi nút đóng bị ẩn hoặc sai vị trí */
+        #closeqc1 {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #ff6a00; /* Màu cam cho đồng bộ */
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 22px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 20px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+        }
+
+            #closeqc1:hover {
+                background: #ff4500;
+            }
+
+
 
         .navigation {
             position: absolute;
@@ -150,16 +184,59 @@
             margin-top: 20px;
         }
 
-        .vid1-giaodien, .vid2-giaodien {
-            text-align: center;
-            margin-top: 60px;
-        }
-
-        .video1-player, .video2-player {
+        .vid1-giaodien {
             width: 70%;
             max-width: 400px;
-            border: 3px solid #ff6a00;
+            margin: 40px auto; 
+            border: 3px solid #ff6a00; 
+            border-radius: 8px;
+            overflow: hidden; 
+            background-color: #1a1a1a; 
         }
+
+        /* Chỉnh riêng cho video bên trong */
+        .video-player {
+            width: 100%;
+            display: block;
+            border-bottom: 2px solid #ff6a00; 
+        }
+
+
+        .vid1name {
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 14px;
+        }
+
+
+        .vid2-giaodien {
+            width: 70%;
+            max-width: 400px;
+            margin: 40px auto; 
+            border: 3px solid #ff6a00;
+            border-radius: 8px;
+            overflow: hidden; 
+            background-color: #1a1a1a; 
+        }
+
+        .video-player {
+            width: 100%;
+            display: block; 
+            border-bottom: 2px solid #ff6a00; 
+        }
+
+        .vid2name {
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 14px;
+        }
+
+
+
 
         .modal {
             display: none;
@@ -193,33 +270,113 @@
             color: #aaa;
             cursor: pointer;
         }
+
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85); /* Nền đen mờ */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999; /* Luôn nằm trên cùng */
+            backdrop-filter: blur(5px); /* Làm mờ cảnh vật phía sau */
+        }
+
+        /* Thân của Popup */
+        .popup-content {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 15px;
+            border: 2px solid #fff; /* Viền trắng nhỏ bao bọc */
+            text-align: center;
+            position: relative;
+            width: 350px;
+            box-shadow: 0 0 20px rgba(255, 106, 0, 0.5);
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        /* Nút X tắt màu cam hình tròn */
+        .close-btn {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 35px;
+            height: 35px;
+            background: #ff6a00; /* Màu cam */
+            border: 2px solid #fff;
+            border-radius: 50%; /* Hình tròn */
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+            .close-btn:hover {
+                background: #ff4500;
+                transform: scale(1.1);
+            }
+
+        /* Hiệu ứng hiện ra mượt mà */
+        @keyframes fadeIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
     </style>
 </head>
 <body>
     <img src="src/logo.jpg" alt="logo" class="logo">
-    <img src="src/qc1.jpg" alt="qc1" class="qc1">
-
+    <div id="qc1" class="qc1">
+        <div class="qc1-content">
+            <span class="close-btn" id="closeqc1">&times;</span>
+            <img src="src/qc1.jpg" alt="qc1" style="width:100%">
+        </div>
+    </div>
 
 
     <div class="welcomehd">
         <h3>Chào mừng đến với SuperHentai! Trang web nơi giúp bạn lên đỉnh cùng anh Độ ii</h3>
     </div>
 
+
+    //VIDEO
+
     <div class="vid1-giaodien">
-        <video class="video1-player" controls><source src="src/vid1.mp4" type="video/mp4"></video>
+        <video class="video-player" controls>
+            <source src="src/vid1.mp4" type="video/mp4">
+        </video>
+        <div class="vid1name">Cô Em Xinh Đẹp Và Người Anh Họ To Con</div>
+        <div class="vid1name">Thể loại: Học Sinh - 148K Lượt xem</div>
     </div>
 
     <div class="vid2-giaodien">
-        <video class="video2-player" controls>
+        <video class="video-player" controls>
             <source src="src/vid2.mp4" type="video/mp4">
         </video>
+        <div class="vid2name">Cô Phục Vụ Xinh Đẹp Và Các Ông Chú Khánh Hàng Khỏe Mạnh</div>
+        <div class="vid2name">Thể loại: Tập Thể - 69K Lượt xem</div>
     </div>
 
 
-    <div id="welcomePopup" class="modal">
-        <div class="modal-content">
+    <div id="welcomePopup" class="popup-overlay">
+        <div class="popup-content">
+            <button class="close-btn" onclick="closePopup()">×</button>
             <span class="close-btn" id="closePopup">&times;</span>
-            <img src="src/popup.jpg" alt="popupqc" style="width:100%">
+            <img src="src/popup.jpg" alt="popup" style="width:100%">
         </div>
     </div>
 
@@ -302,6 +459,9 @@
             document.getElementById("welcomePopup").style.display = "none";
             localStorage.setItem("popupShown", "true");
         }
+        document.getElementById("closeqc1").onclick = function () {
+            document.getElementById("qc1").style.display = "none";
+        };
     </script>
 </body>
 </html>
