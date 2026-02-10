@@ -386,6 +386,62 @@
             display: block;
         }
 
+        .vid1-giaodien {
+            width: 70%;
+            max-width: 400px;
+            margin: 40px auto;
+            border: 3px solid #ff6a00;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #1a1a1a;
+            position: absolute;
+            left: 500px;
+        }
+
+        /* Chỉnh riêng cho video bên trong */
+        .video-player {
+            width: 100%;
+            display: block;
+            border-bottom: 2px solid #ff6a00;
+        }
+
+
+        .vid1name {
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 14px;
+        }
+
+
+        .vid2-giaodien {
+            width: 70%;
+            max-width: 400px;
+            margin: 40px auto;
+            border: 3px solid #ff6a00;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #1a1a1a;
+            position: absolute;
+            left: 500px;
+            top: 650px;
+        }
+
+        .video-player {
+            width: 100%;
+            display: block;
+            border-bottom: 2px solid #ff6a00;
+        }
+
+        .vid2name {
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 14px;
+        }
+
 
 
     </style>
@@ -423,20 +479,28 @@
         <ul class="chontl">
             <li><a href="koche.html">Không che🔥</a></li>
             <li><a href="4k.webp">4K 120FPS</a></li>
-            <li><a href="the-loai-hoc-sinh.html">Học sinh</a></li>
+            <li><a href="src/vid3.mp4">Học sinh</a></li>
+            <li><a href="the-loai-hoc-sinh.html">Tập thể</a></li>
         </ul>
 
+   
+
         <div class="vid1-giaodien">
-            <video class="video1-player" controls>
-                <source src="src/vid1.mp4" type="video/mp4">
+            <video class="video-player" controls>
+                <source src="src/vid5.mp4" type="video/mp4">
             </video>
+            <div class="vid1name">Đôi Bạn Thân Tình Cảm</div>
+            <div class="vid1name">Thể loại: Bạn Bè - 36K Lượt xem</div>
         </div>
 
         <div class="vid2-giaodien">
-            <video class="video2-player" controls>
-                <source src="src/vid2.mp4" type="video/mp4">
+            <video class="video-player" controls>
+                <source src="src/vid4.mp4" type="video/mp4">
             </video>
+            <div class="vid2name">Cô Nữ Sinh Và Bạn Học</div>
+            <div class="vid2name">Thể loại: Học Sinh - 69K Lượt xem</div>
         </div>
+
 
     </div>
 
@@ -542,6 +606,6 @@
          document.getElementById("welcomePopup").style.display = "none";
          localStorage.setItem("popupShown", "true");
      }
-
+    </script >
 </body>
 </html>
