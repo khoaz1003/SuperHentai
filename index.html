@@ -8,8 +8,11 @@
     <style>
         body {
             background-color: black;
-            padding-top: 50px;
+            padding-top: 80px;
             font-family: sans-serif;
+            margin: 0;
+            color: white;
+            overflow-x: hidden; /* Tránh hiện thanh cuộn ngang khi menu ẩn */
         }
 
         .logo {
@@ -20,104 +23,219 @@
             height: auto;
         }
 
-        .qc1 {
-            position: fixed;
-            top: 600px;
-            left: 550px;
-            width: 300px;
-            height: auto;
-            z-index: 999;
-        }
-        .qc1-content {
-            position: relative; /* Quan trọng để nút đóng bám vào đây */
+        .welcomehd {
             width: 100%;
-        }
-
-            .qc1-content img {
-                width: 100%;
-                border-radius: 8px;
-                display: block;
-            }
-
-        /* Sửa lỗi nút đóng bị ẩn hoặc sai vị trí */
-        #closeqc1 {
-            position: absolute;
-            top: -10px;
-            right: -10px;
-            background: #ff6a00; /* Màu cam cho đồng bộ */
-            color: white;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
             text-align: center;
-            line-height: 22px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 20px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.5);
+            margin: 20px 0;
+            display: block;
         }
 
-            #closeqc1:hover {
-                background: #ff4500;
-            }
-
-
-
+        /* --- MENU ĐIỀU HƯỚNG --- */
         .navigation {
             position: absolute;
-            top: 20px;
+            top: 25px;
             right: 20px;
             display: flex;
             align-items: center;
             list-style: none;
             padding: 0;
             margin: 0;
+            z-index: 1000;
         }
 
             .navigation li {
-                margin-left: 20px;
+                margin-left: 15px;
+                display: flex;
+                align-items: center;
             }
 
-            .navigation a {
-                color: #ff6a00;
+        /* Nút 3 gạch nằm sau nút Đăng nhập */
+        .menu-toggle {
+            color: #ff6a00;
+            font-size: 28px;
+            cursor: pointer;
+            transition: 0.2s;
+            padding: 5px;
+        }
+
+            .menu-toggle:hover {
+                color: #ff0000;
+                transform: scale(1.1);
+            }
+
+        /* --- SIDEBAR MENU (THANH BÊN) --- */
+        .sidebar-menu {
+            position: fixed;
+            top: 0;
+            right: -300px; /* Ẩn bên phải */
+            width: 250px;
+            height: 100%;
+            background: #111;
+            border-left: 2px solid #ff6a00;
+            transition: 0.4s ease-in-out;
+            z-index: 10001;
+            padding: 60px 20px 20px 20px;
+            box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+        }
+
+            .sidebar-menu.active {
+                right: 0; /* Hiện ra */
+            }
+
+            .sidebar-menu a {
+                display: block;
+                color: white;
                 text-decoration: none;
-                font-size: 16px;
-                padding: 5px 10px;
+                font-size: 18px;
+                font-weight: bold;
+                padding: 15px;
+                margin-bottom: 10px;
+                border-radius: 8px;
                 transition: 0.3s;
+                border-bottom: 1px solid #222;
             }
 
-                .navigation a:hover {
-                    color: #ffcc00;
-                    border-bottom: 1px solid #ffcc00;
+                .sidebar-menu a:hover {
+                    background: #ff6a00;
+                    color: black;
+                    padding-left: 25px;
                 }
 
-        /* NÚT ĐĂNG NHẬP GRADIENT */
+        /* Nút đóng trong Sidebar */
+        .close-sidebar {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 30px;
+            color: #ff6a00;
+            cursor: pointer;
+        }
+
+        /* --- NÚT ĐĂNG NHẬP --- */
         .login {
-            position: relative;
-            background: #000;
+            background: #000 !important;
             border: none;
-            border-radius: 8px;
-            padding: 8px 18px;
+            border-radius: 30px;
+            padding: 10px 25px;
             color: white;
             cursor: pointer;
             font-weight: bold;
+            font-size: 16px;
+            position: relative;
             z-index: 1;
-            display: inline-block;
         }
 
             .login::before {
                 content: "";
                 position: absolute;
                 top: -2px;
-                bottom: -2px;
                 left: -2px;
+                bottom: -2px;
                 right: -2px;
-                background: linear-gradient(45deg, #ff8c00, #ff4500, #fbbf24);
-                border-radius: 10px;
+                background: linear-gradient(45deg, #ff0000, #ff8c00);
+                border-radius: 32px;
                 z-index: -1;
             }
 
-        /* STYLE CHO USER MENU (KHI ĐÃ ĐĂNG NHẬP) */
+        /* --- QC1 --- */
+        .qc1 {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 400px;
+            z-index: 1000;
+            background: #000;
+            border: 2px solid #ff0000;
+            border-radius: 10px;
+            padding: 5px;
+        }
+
+        /* --- VIDEO GRID --- */
+        .video-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .video-item {
+            width: calc(33.33% - 40px);
+            min-width: 300px;
+            border: 3px solid #ff6a00;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #1a1a1a;
+            transition: 0.3s;
+        }
+
+            .video-item:hover {
+                transform: translateY(-5px);
+                border-color: #ff0000;
+            }
+
+        .video-player {
+            width: 100%;
+            display: block;
+            border-bottom: 2px solid #ff6a00;
+        }
+
+        .vid-name {
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* --- POPUP CHÀO MỪNG --- */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            backdrop-filter: blur(5px);
+        }
+
+        .popup-content {
+            background: #1a1a1a;
+            padding: 40px;
+            border-radius: 15px;
+            border: 2px solid #fff;
+            text-align: center;
+            position: relative;
+            width: 350px;
+            box-shadow: 0 0 20px rgba(255, 106, 0, 0.5);
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 35px;
+            height: 35px;
+            background: #ff6a00;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.3s;
+        }
+
+        /* DROP DOWN USER */
         .user-dropdown {
             position: relative;
             display: inline-block;
@@ -131,20 +249,7 @@
             padding: 5px 12px;
             border-radius: 20px;
             background: rgba(255, 255, 255, 0.1);
-            border: 1px solid #ff6a00;
-        }
-
-        .user-avatar {
-            width: 25px; /* Kích thước nhỏ xinh bên cạnh tên */
-            height: 25px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        .user-name {
-            color: #fff;
-            font-weight: bold;
-            font-size: 14px;
+            border: 1px solid #ff0000;
         }
 
         .dropdown-content {
@@ -155,175 +260,21 @@
             background-color: #1a1a1a;
             min-width: 150px;
             border-radius: 8px;
-            border: 1px solid #ff6a00;
+            border: 1px solid #ff0000;
             z-index: 1001;
-            overflow: hidden;
         }
 
             .dropdown-content a {
                 color: white !important;
                 padding: 12px;
                 display: block;
-                font-size: 14px;
-                border: none !important;
+                text-decoration: none;
             }
-
-                .dropdown-content a:hover {
-                    background-color: #ff6a00;
-                    color: #000 !important;
-                }
 
         .user-dropdown:hover .dropdown-content {
             display: block;
         }
 
-        /* NỘI DUNG KHÁC GIỮ NGUYÊN */
-        .welcomehd {
-            text-align: center;
-            color: white;
-            margin-top: 20px;
-        }
-
-        .vid1-giaodien {
-            width: 70%;
-            max-width: 400px;
-            margin: 40px auto; 
-            border: 3px solid #ff6a00; 
-            border-radius: 8px;
-            overflow: hidden; 
-            background-color: #1a1a1a; 
-        }
-
-        /* Chỉnh riêng cho video bên trong */
-        .video-player {
-            width: 100%;
-            display: block;
-            border-bottom: 2px solid #ff6a00; 
-        }
-
-
-        .vid1name {
-            color: white;
-            padding: 10px;
-            font-weight: bold;
-            text-align: center;
-            font-size: 14px;
-        }
-
-
-        .vid2-giaodien {
-            width: 70%;
-            max-width: 400px;
-            margin: 40px auto; 
-            border: 3px solid #ff6a00;
-            border-radius: 8px;
-            overflow: hidden; 
-            background-color: #1a1a1a; 
-        }
-
-        .video-player {
-            width: 100%;
-            display: block; 
-            border-bottom: 2px solid #ff6a00; 
-        }
-
-        .vid2name {
-            color: white;
-            padding: 10px;
-            font-weight: bold;
-            text-align: center;
-            font-size: 14px;
-        }
-
-
-
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-        }
-
-        .modal-content {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 15px;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 24px;
-            color: #aaa;
-            cursor: pointer;
-        }
-
-        .popup-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85); /* Nền đen mờ */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999; /* Luôn nằm trên cùng */
-            backdrop-filter: blur(5px); /* Làm mờ cảnh vật phía sau */
-        }
-
-        /* Thân của Popup */
-        .popup-content {
-            background: #1a1a1a;
-            padding: 40px;
-            border-radius: 15px;
-            border: 2px solid #fff; /* Viền trắng nhỏ bao bọc */
-            text-align: center;
-            position: relative;
-            width: 350px;
-            box-shadow: 0 0 20px rgba(255, 106, 0, 0.5);
-            animation: fadeIn 0.4s ease-out;
-        }
-
-        /* Nút X tắt màu cam hình tròn */
-        .close-btn {
-            position: absolute;
-            top: -15px;
-            right: -15px;
-            width: 35px;
-            height: 35px;
-            background: #ff6a00; /* Màu cam */
-            border: 2px solid #fff;
-            border-radius: 50%; /* Hình tròn */
-            color: white;
-            font-size: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transition: 0.3s;
-        }
-
-            .close-btn:hover {
-                background: #ff4500;
-                transform: scale(1.1);
-            }
-
-        /* Hiệu ứng hiện ra mượt mà */
         @keyframes fadeIn {
             from {
                 transform: scale(0.8);
@@ -335,123 +286,99 @@
                 opacity: 1;
             }
         }
-
     </style>
 </head>
 <body>
     <img src="src/logo.jpg" alt="logo" class="logo">
-    <div id="qc1" class="qc1">
-        <div class="qc1-content">
-            <span class="close-btn" id="closeqc1">&times;</span>
-            <img src="src/qc1.jpg" alt="qc1" style="width:100%">
+
+    <ul class="navigation">
+        <li id="authSection">
+            <button id="loginBtn" class="login" onclick="window.location.href='login.html'">Đăng nhập</button>
+            <div id="userMenu" class="user-dropdown" style="display: none;">
+                <div class="user-info">
+                    <img src="src/user.png" alt="avatar" style="width:25px; height:25px; border-radius:50%;">
+                    <span id="displayUserName" style="font-weight:bold; font-size:14px;">ĐỘ MIXI</span>
+                    <i class="fa-solid fa-caret-down" style="color:#ff0000;"></i>
+                </div>
+                <div class="dropdown-content">
+                    <a href="#">Hồ sơ</a>
+                    <a href="#" id="logoutBtn">Đăng xuất</a>
+                </div>
+            </div>
+        </li>
+        <li><i class="fa-solid fa-bars menu-toggle" id="openSidebar"></i></li>
+    </ul>
+
+    <div id="sidebarMenu" class="sidebar-menu">
+        <span class="close-sidebar" id="closeSidebar">&times;</span>
+        <div style="margin-top: 20px;">
+            <a href="index.html"><i class="fa-solid fa-house"></i> Trang Chủ</a>
+            <a href="tl.html"><i class="fa-solid fa-layer-group"></i> Thể Loại</a>
+            <a href="hot.html"><i class="fa-solid fa-fire"></i> Hot</a>
+            <a href="tk.html"><i class="fa-solid fa-magnifying-glass"></i> Tìm Kiếm</a>
         </div>
     </div>
-
 
     <div class="welcomehd">
         <h3>Chào mừng đến với SuperHentai! Trang web nơi giúp bạn lên đỉnh cùng anh Độ ii</h3>
     </div>
 
-
-    //VIDEO
-
-    <div class="vid1-giaodien">
-        <video class="video-player" controls>
-            <source src="src/vid1.mp4" type="video/mp4">
-        </video>
-        <div class="vid1name">Cô Em Xinh Đẹp Và Người Anh Họ To Con</div>
-        <div class="vid1name">Thể loại: Học Sinh - 148K Lượt xem</div>
+    <div class="video-container">
+        <div class="video-item"><video class="video-player" controls><source src="src/vid1.mp4" type="video/mp4"></video><div class="vid-name">Cô Em Xinh Đẹp Và Người Anh Họ To Con</div></div>
+        <div class="video-item"><video class="video-player" controls><source src="src/vid2.mp4" type="video/mp4"></video><div class="vid-name">Người Anh Hai Số Hưởng</div></div>
+        <div class="video-item"><video class="video-player" controls><source src="src/6.mp4" type="video/mp4"></video><div class="vid-name">Cực Phẩm Nhân Gian 1</div></div>
+        <div class="video-item"><video class="video-player" controls><source src="src/7.mp4" type="video/mp4"></video><div class="vid-name">Cực Phẩm Nhân Gian 2</div></div>
     </div>
-
-    <div class="vid2-giaodien">
-        <video class="video-player" controls>
-            <source src="src/vid2.mp4" type="video/mp4">
-        </video>
-        <div class="vid2name">Người Anh Hai Số Hưởng Nhưng Không Biết Tận Hưởng Và Cái Kết</div>
-        <div class="vid2name">Thể loại: Anh Em - 18K Lượt xem</div>
-    </div>
-
 
     <div id="welcomePopup" class="popup-overlay">
         <div class="popup-content">
-            <button class="close-btn" onclick="closePopup()">×</button>
             <span class="close-btn" id="closePopup">&times;</span>
-            <img src="src/popup.jpg" alt="popup" style="width:100%">
+            <img src="src/popup.jpg" alt="popup" style="width:100%; border-radius: 8px;">
         </div>
     </div>
 
-
-
-    <ul class="navigation">
-        <li><a href="index.html">Trang Chủ</a></li>
-        <li><a href="tl.html">Thể Loại</a></li>
-        <li><a href="hot.html">Hot</a></li>
-        <li><a href="tk.html">Tìm Kiếm</a></li>
-
-        <li id="authSection">
-            <button id="loginBtn" class="login" onclick="window.location.href='login.html'">Đăng nhập</button>
-
-            <div id="userMenu" class="user-dropdown" style="display: none;">
-                <div class="user-info">
-                    <img src="src/user.png" alt="avatar" class="user-avatar">
-                    <span id="displayUserName" class="user-name">ĐỘ MIXI</span>
-                    <i class="fa-solid fa-caret-down" style="color:#ff6a00; font-size:10px;"></i>
-                </div>
-                <div class="dropdown-content">
-                    <a href="#"><i class="fa-solid fa-user-gear"></i> Hồ sơ</a>
-                    <a href="#" id="logoutBtn"><i class="fa-solid fa-power-off"></i> Đăng xuất</a>
-                </div>
-            </div>
-        </li>
-    </ul>
-
-
-
+    <div id="qc1" class="qc1">
+        <div style="position: relative;">
+            <span class="close-btn" id="closeqc1" style="width:20px; height:20px; font-size:14px; top:-10px; right:-10px;">&times;</span>
+            <img src="src/qc1.jpg" alt="qc1" style="width:100%; border-radius: 8px;">
+        </div>
+    </div>
 
     <script>
+        // Các biến điều khiển Sidebar
+        const sidebar = document.getElementById('sidebarMenu');
+        const openSidebar = document.getElementById('openSidebar');
+        const closeSidebar = document.getElementById('closeSidebar');
+
+        openSidebar.onclick = () => sidebar.classList.add('active');
+        closeSidebar.onclick = () => sidebar.classList.remove('active');
+
+        // Logic Đăng nhập / Auth
         const loginBtn = document.getElementById('loginBtn');
         const userMenu = document.getElementById('userMenu');
         const logoutBtn = document.getElementById('logoutBtn');
         const displayUserName = document.getElementById('displayUserName');
 
         function checkAuth() {
-            const userEmail = localStorage.getItem('userEmail');
             if (localStorage.getItem('isLoggedIn') === 'true') {
                 loginBtn.style.display = 'none';
                 userMenu.style.display = 'inline-block';
-                // Lấy phần trước chữ @ làm tên hiển thị
-                displayUserName.innerText = userEmail.split('@')[0];
-            } else {
-                loginBtn.style.display = 'inline-block';
-                userMenu.style.display = 'none';
+                displayUserName.innerText = localStorage.getItem('userEmail').split('@')[0];
             }
         }
 
-        // Xử lý đăng xuất có popup xác nhận
         logoutBtn.onclick = function (e) {
-            e.preventDefault(); // Ngăn chặn hành động mặc định của thẻ a
-
-            // Tạo popup xác nhận của trình duyệt
-            const confirmLogout = confirm("Mày chắc chắn muốn đăng xuất?");
-
-            if (confirmLogout) {
-                // Nếu chọn "OK"
-                localStorage.removeItem('isLoggedIn');
-                localStorage.removeItem('userEmail');
-
-                alert("Đăng xuất thành công!");
-                location.reload(); // Load lại trang để quay về trạng thái chưa đăng nhập
-            } else {
-                // Nếu chọn "Cancel" thì không làm gì cả
-                console.log("thả tao ra");
+            e.preventDefault();
+            if (confirm("Mày chắc chắn muốn đăng xuất?")) {
+                localStorage.clear();
+                location.reload();
             }
         }
 
-        // Logic popup cũ của bạn
         window.onload = function () {
             checkAuth();
             if (!localStorage.getItem("popupShown")) {
-                setTimeout(() => { document.getElementById("welcomePopup").style.display = "block"; }, 1500);
+                document.getElementById("welcomePopup").style.display = "flex";
             }
         };
 
